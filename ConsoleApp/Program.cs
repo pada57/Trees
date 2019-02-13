@@ -15,7 +15,8 @@ namespace ConsoleApp
             var root = Generator.GenerateTree(20);
 
             Console.WriteLine("Tree generated:");
-            PrettyPrint(root);
+            //PrettyPrint(root);
+            TreePrinter.Print(root);
 
             Console.ReadKey();
         }
