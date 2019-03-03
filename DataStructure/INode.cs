@@ -5,6 +5,7 @@ using System.Text;
 namespace DataStructure
 {
     public interface INode<T>
+        where T : IComparable<T>
     {
         T Value { get; }
         INode<T> Left { get; }

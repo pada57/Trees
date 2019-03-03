@@ -3,6 +3,7 @@
 namespace DataStructure
 {
     public class Node<T> : INode<T>
+        where T : IComparable<T>
     {
         public Node(T value, Node<T> left = null, Node<T> right = null)
         {
@@ -15,6 +16,7 @@ namespace DataStructure
         {
             Load(this, values, index);
         }
+
 
         void Load(Node<T> tree, T[] values, int index)
         {

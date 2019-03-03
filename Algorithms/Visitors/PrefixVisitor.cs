@@ -6,6 +6,7 @@ using System.Text;
 namespace Algorithms.Visitors
 {
     public class PrefixVisitor<T> : IVisitor<T>
+        where T : IComparable<T>
     {
         public void Visit(INode<T> node)
         {

@@ -8,6 +8,7 @@ namespace CommonStuff
     public static class TreePrinter
     {
         class NodeInfo<T>
+            where T : IComparable<T>
         {
             public INode<T> Node;
             public string Text;
@@ -20,6 +21,7 @@ namespace CommonStuff
 
 
         public static void Print<T>(this INode<T> root, string textFormat = "0", int spacing = 1, int topMargin = 2, int leftMargin = 2)
+            where T : IComparable<T>
         {
             if (root == null) return;
             int rootTop = Console.CursorTop + topMargin;

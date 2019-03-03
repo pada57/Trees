@@ -22,6 +22,7 @@ namespace ConsoleApp
         }
 
         public static void PrettyPrint<T>(INode<T> node, int padding = 4)
+            where T : IComparable<T>
         {
             if (node != null)
             {
