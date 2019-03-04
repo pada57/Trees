@@ -32,6 +32,8 @@ namespace DataStructure
         {
             Guard.Against.Null(value, nameof(value));
 
+            throw new NotImplementedException();
+
             return false;
         }
 
@@ -39,6 +41,8 @@ namespace DataStructure
         public bool Contains(T value)
         {
             Guard.Against.Null(value, nameof(value));
+
+            throw new NotImplementedException();
 
             return false;
         }
