@@ -2,7 +2,7 @@
 
 namespace DataStructure
 {
-    public class Node<T> : INode<T>
+    internal class Node<T>
         where T : IComparable<T>
     {
         public Node(T value, Node<T> left = null, Node<T> right = null)
@@ -12,9 +12,38 @@ namespace DataStructure
             Right = right;
         }
 
+
         public Node(T[] values, int index = 0)
         {
             Load(this, values, index);
+        }
+
+        public T Value { get; private set; }
+
+        public Node<T> Left { get; private set; }
+        public Node<T> Right { get; private set; }
+
+        public Node<T> Insert(T value)
+        {
+            return this.Insert(this, value);
+        }
+
+        private Node<T> Insert(Node<T> currentNode, T value)
+        {
+            if (currentNode == null)
+            {
+                currentNode = new Node<T>(value);
+            }
+            else if (value.CompareTo(currentNode.Value) < 0)
+            {
+                currentNode.Left = Insert(currentNode.Left, value);
+            }
+            else
+            {
+                currentNode.Right = Insert(currentNode.Right, value);
+            }
+
+            return currentNode;
         }
 
 
@@ -31,13 +60,6 @@ namespace DataStructure
             }
         }
 
-        public T Value { get; private set; }
-        public INode<T> Left { get; private set; }
-        public INode<T> Right { get; private set; }
 
-        public void Accept(IVisitor<T> visitor)
-        {
-            visitor.Visit(this);
-        }
     }
 }

@@ -16,36 +16,11 @@ namespace ConsoleApp
 
             Console.WriteLine("Tree generated:");
             //PrettyPrint(root);
-            TreePrinter.Print(root);
+            root.PrintToConsole();
 
             Console.ReadKey();
         }
 
-        public static void PrettyPrint<T>(INode<T> node, int padding = 4)
-            where T : IComparable<T>
-        {
-            if (node != null)
-            {
-                if (node.Right != null)
-                {
-                    PrettyPrint(node.Right, padding + 4);
-                }
-                if (padding > 0)
-                {
-                    Console.Write(" ".PadLeft(padding));
-                }
-                if (node.Right != null)
-                {
-                    Console.Write("/\n");
-                    Console.Write(" ".PadLeft(padding));
-                }
-                Console.Write(node.Value.ToString() + "\n ");
-                if (node.Left != null)
-                {
-                    Console.Write(" ".PadLeft(padding) + "\\\n");
-                    PrettyPrint(node.Left, padding + 4);
-                }
-            }
-        }
+        
     }
 }

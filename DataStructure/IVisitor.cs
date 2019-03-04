@@ -7,6 +7,6 @@ namespace DataStructure
     public interface IVisitor<T>
         where T : IComparable<T>
     {
-        void Visit(INode<T> node);
+        void Visit(BinarySearchTree<T> node);
     }
 }

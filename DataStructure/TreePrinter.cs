@@ -3,14 +3,14 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CommonStuff
+namespace DataStructure
 {
-    public static class TreePrinter
+    internal class TreePrinter
     {
         class NodeInfo<T>
             where T : IComparable<T>
         {
-            public INode<T> Node;
+            public Node<T> Node;
             public string Text;
             public int StartPos;
             public int Size { get { return Text.Length; } }
@@ -18,9 +18,7 @@ namespace CommonStuff
             public NodeInfo<T> Parent, Left, Right;
         }
 
-
-
-        public static void Print<T>(this INode<T> root, string textFormat = "0", int spacing = 1, int topMargin = 2, int leftMargin = 2)
+        internal void Print<T>(Node<T> root, string textFormat = "0", int spacing = 1, int topMargin = 2, int leftMargin = 2)
             where T : IComparable<T>
         {
             if (root == null) return;
@@ -87,11 +85,42 @@ namespace CommonStuff
             Console.SetCursorPosition(0, rootTop + 2 * last.Count - 1);
         }
 
-        private static void Print(string s, int top, int left, int right = -1)
+        private void Print(string s, int top, int left, int right = -1)
         {
             Console.SetCursorPosition(left, top);
             if (right < 0) right = left + s.Length;
             while (Console.CursorLeft < right) Console.Write(s);
         }
+
+        #region Old version
+
+        //public static void PrettyPrint<T>(INode<T> node, int padding = 4)
+        //    where T : IComparable<T>
+        //{
+        //    if (node != null)
+        //    {
+        //        if (node.Right != null)
+        //        {
+        //            PrettyPrint(node.Right, padding + 4);
+        //        }
+        //        if (padding > 0)
+        //        {
+        //            Console.Write(" ".PadLeft(padding));
+        //        }
+        //        if (node.Right != null)
+        //        {
+        //            Console.Write("/\n");
+        //            Console.Write(" ".PadLeft(padding));
+        //        }
+        //        Console.Write(node.Value.ToString() + "\n ");
+        //        if (node.Left != null)
+        //        {
+        //            Console.Write(" ".PadLeft(padding) + "\\\n");
+        //            PrettyPrint(node.Left, padding + 4);
+        //        }
+        //    }
+        //}
+
+        #endregion
     }
 }
