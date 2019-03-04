@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace DataStructure
 {
@@ -22,6 +23,44 @@ namespace DataStructure
 
         public Node<T> Left { get; private set; }
         public Node<T> Right { get; private set; }
+
+        public IEnumerable<T> TraverseInOrder()
+        {
+            IList<T> nodes = new List<T>();
+            
+
+            var stack = new Stack<Node<T>>();
+            stack.Push(this);
+
+            var visited = new HashSet<Node<T>>();
+
+            while (stack.Count > 0)
+            {
+                // peek first, if need, continue to push left child to the stack
+                var current = stack.Peek();
+                var left = current.Left;
+
+                // push left to the end because it is downwarding process
+                while (left != null && !visited.Contains(left))
+                {
+                    stack.Push(left);
+                    left = left.Left;
+                }
+
+                var visit = stack.Pop();
+
+                nodes.Add(visit.Value);
+
+                visited.Add(visit);
+
+                if (visit.Right != null)
+                {
+                    stack.Push(visit.Right);
+                }
+            }
+
+            return nodes;
+        }
 
         public Node<T> Insert(T value)
         {

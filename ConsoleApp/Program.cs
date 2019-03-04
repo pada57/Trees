@@ -18,6 +18,11 @@ namespace ConsoleApp
             //PrettyPrint(root);
             root.PrintToConsole();
 
+            foreach (var item in root)
+            {
+                Console.Write($"{item} ");
+            }
+
             Console.ReadKey();
         }
 

@@ -45,12 +45,17 @@ namespace DataStructure
 
         public IEnumerator<T> GetEnumerator()
         {
-            throw new NotImplementedException();
+            if (root == null) yield break;
+
+            foreach (var item in root.TraverseInOrder())
+            {
+                yield return item;
+            }
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            throw new NotImplementedException();
+            return this.GetEnumerator();
         }
 
         public void PrintToConsole()
