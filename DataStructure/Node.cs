@@ -84,6 +84,60 @@ namespace DataStructure
 
             return currentNode;
         }
+        
+
+        public Node<T> Delete(Node<T> currentNode, T value)
+        {
+            if (currentNode == null) return currentNode;
+
+            /* Otherwise, recur down the tree */
+            if (value.CompareTo( currentNode.Value) < 0)
+                currentNode.Left = Delete(currentNode.Left, value);
+            else if (value.CompareTo( currentNode.Value) > 0)
+                currentNode.Right = Delete(currentNode.Right, value);
+
+            // if key is same as root's key, then This is the node  
+            // to be deleted  
+            else
+            {
+                // node with only one child or no child  
+                if (currentNode.Left == null)
+                    return currentNode.Right;
+                else if (currentNode.Right == null)
+                    return currentNode.Left;
+
+                // node with two children: Get the 
+                // inorder successor (smallest  
+                // in the right subtree)  
+                currentNode.Value = MinValue(currentNode.Right);
+
+                // Delete the inorder successor  
+                currentNode.Right = Delete(currentNode.Right, currentNode.Value);
+            }
+            return currentNode;
+        }
+
+        public T MinValue(Node<T> root)
+        {
+            T minv = root.Value;
+            while (root.Left != null)
+            {
+                minv = root.Left.Value;
+                root = root.Left;
+            }
+            return minv;
+        }
+
+        public bool Contains(T value)
+        {
+            if (value.CompareTo(Value) == 0)
+                return true;
+
+            if (value.CompareTo(Value) < 0 && Left != null)
+                return Left.Contains(value);
+
+            return Right != null && Right.Contains(value);
+        }
 
 
         void Load(Node<T> tree, T[] values, int index)

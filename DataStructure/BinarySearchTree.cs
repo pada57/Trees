@@ -28,23 +28,30 @@ namespace DataStructure
             return this;
         }    
 
-        public bool Delete(T value)
+        public BinarySearchTree<T> Delete(T value)
         {
             Guard.Against.Null(value, nameof(value));
 
-            throw new NotImplementedException();
+            if (root != null)
+            {
+                root.Delete(root, value);
+            }
 
-            return false;
-        }
+            return this;
+        }        
 
 
         public bool Contains(T value)
         {
             Guard.Against.Null(value, nameof(value));
 
-            throw new NotImplementedException();
+            var contains = false;
+            if (root != null)
+            {
+                contains = root.Contains(value);
+            }
 
-            return false;
+            return contains;
         }
 
         public IEnumerator<T> GetEnumerator()
